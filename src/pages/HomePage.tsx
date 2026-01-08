@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mic, Upload, FileText, Hand } from 'lucide-react';
+import { ArrowRight, Mic, FileText, Hand } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
@@ -45,7 +45,7 @@ export default function HomePage() {
             <Link to="/translate">
               <Button
                 size="lg"
-                className="bg-accent text-accent-foreground hover:bg-gold-dark font-semibold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all group"
+                className="bg-gold text-primary hover:bg-gold-dark font-semibold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all group"
               >
                 เริ่มใช้งาน
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />

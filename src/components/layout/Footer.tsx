@@ -2,16 +2,16 @@ import { Hand } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary py-6">
+    <footer className="bg-secondary py-6">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Hand className="text-accent" size={24} />
-            <span className="text-primary-foreground font-medium">
+            <Hand className="text-gold" size={24} />
+            <span className="text-secondary-foreground font-medium">
               แปลเสียงและข้อความเป็นภาษามือ
             </span>
           </div>
-          <p className="text-primary-foreground/70 text-sm">
+          <p className="text-secondary-foreground/70 text-sm">
             © 2024 สงวนลิขสิทธิ์ทุกประการ
           </p>
         </div>

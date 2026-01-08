@@ -64,15 +64,20 @@ export default {
         },
         navy: {
           DEFAULT: "hsl(var(--navy))",
+          dark: "hsl(var(--navy-dark))",
           light: "hsl(var(--navy-light))",
-        },
-        sky: {
-          DEFAULT: "hsl(var(--sky))",
-          light: "hsl(var(--sky-light))",
         },
         gold: {
           DEFAULT: "hsl(var(--gold))",
           dark: "hsl(var(--gold-dark))",
+        },
+        lavender: {
+          DEFAULT: "hsl(var(--lavender))",
+          light: "hsl(var(--lavender-light))",
+        },
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          foreground: "hsl(var(--purple-foreground))",
         },
       },
       borderRadius: {

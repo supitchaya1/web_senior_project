@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -88,7 +88,7 @@ export default function LoginPage() {
 
             <Button
               type="submit"
-              className="w-full bg-primary py-6"
+              className="w-full bg-secondary text-secondary-foreground py-6"
               disabled={isLoading}
             >
               {isLoading ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
@@ -100,7 +100,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-sky-light dark:bg-card px-4 text-muted-foreground">
+              <span className="bg-lavender-light dark:bg-card px-4 text-muted-foreground">
                 หรือ
               </span>
             </div>

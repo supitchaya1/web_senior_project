@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Mic, Upload, X, FileAudio } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useNavigate } from 'react-router-dom';
@@ -75,7 +75,7 @@ export default function TranslatePage() {
               {isRecording ? (
                 <div className="relative">
                   <motion.div
-                    className="w-16 h-16 rounded-full bg-primary flex items-center justify-center cursor-pointer"
+                    className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center cursor-pointer"
                     onClick={handleStopRecording}
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ repeat: Infinity, duration: 1 }}
@@ -84,7 +84,7 @@ export default function TranslatePage() {
                       {[...Array(5)].map((_, i) => (
                         <motion.div
                           key={i}
-                          className="w-1 bg-primary-foreground rounded-full"
+                          className="w-1 bg-secondary-foreground rounded-full"
                           animate={{
                             height: [10, 25, 10],
                           }}
@@ -98,7 +98,7 @@ export default function TranslatePage() {
                     </div>
                   </motion.div>
                   <motion.div
-                    className="absolute inset-0 rounded-full border-2 border-primary"
+                    className="absolute inset-0 rounded-full border-2 border-secondary"
                     animate={{ scale: [1, 1.5], opacity: [1, 0] }}
                     transition={{ repeat: Infinity, duration: 1 }}
                   />
@@ -106,7 +106,7 @@ export default function TranslatePage() {
               ) : (
                 <button
                   onClick={handleStartRecording}
-                  className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center hover:bg-secondary/80 transition-colors"
+                  className="w-16 h-16 rounded-full bg-lavender flex items-center justify-center hover:bg-lavender/80 transition-colors"
                 >
                   <Mic size={28} className="text-primary" />
                 </button>
@@ -125,7 +125,7 @@ export default function TranslatePage() {
             className="card-highlight"
           >
             <div className="flex items-center gap-2 mb-4">
-              <FileAudio size={20} className="text-accent" />
+              <FileAudio size={20} className="text-gold" />
               <h2 className="font-semibold text-foreground">อัปโหลดไฟล์เสียง</h2>
             </div>
 
@@ -164,7 +164,7 @@ export default function TranslatePage() {
             transition={{ delay: 0.3 }}
             className="card-highlight"
           >
-            <h2 className="font-semibold text-accent mb-4">
+            <h2 className="font-semibold text-gold mb-4">
               ข้อความที่ได้ / พิมพ์ข้อความ
             </h2>
             <Textarea
@@ -184,7 +184,7 @@ export default function TranslatePage() {
             <Button
               onClick={handleSubmit}
               size="lg"
-              className="w-full bg-primary hover:bg-navy-light text-primary-foreground font-semibold py-6 rounded-xl"
+              className="w-full bg-secondary hover:bg-navy-light text-secondary-foreground font-semibold py-6 rounded-xl"
             >
               สร้างสรุป คำสำคัญ และวิดีโอภาษามือ
             </Button>
@@ -204,7 +204,7 @@ export default function TranslatePage() {
             <Button
               variant="link"
               onClick={() => fileInputRef.current?.click()}
-              className="text-accent"
+              className="text-gold"
             >
               อัพโหลดไฟล์
             </Button>
@@ -233,7 +233,7 @@ export default function TranslatePage() {
             </p>
             <Button
               onClick={() => setShowNotFoundModal(false)}
-              className="bg-primary"
+              className="bg-secondary"
             >
               พูดอีกครั้ง
             </Button>

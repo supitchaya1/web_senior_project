@@ -128,7 +128,7 @@ export default function RegisterPage() {
 
             <Button
               type="submit"
-              className="w-full bg-primary py-6"
+              className="w-full bg-secondary text-secondary-foreground py-6"
               disabled={isLoading}
             >
               {isLoading ? 'กำลังสร้างบัญชี...' : 'สร้างบัญชี'}
@@ -140,7 +140,7 @@ export default function RegisterPage() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-sky-light dark:bg-card px-4 text-muted-foreground">
+              <span className="bg-lavender-light dark:bg-card px-4 text-muted-foreground">
                 หรือ
               </span>
             </div>

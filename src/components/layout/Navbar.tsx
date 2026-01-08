@@ -22,12 +22,12 @@ export default function Navbar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-primary shadow-lg">
+    <nav className="sticky top-0 z-50 bg-secondary shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-primary-foreground"
+            className="lg:hidden p-2 text-secondary-foreground"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -39,8 +39,8 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-primary-foreground font-medium transition-colors hover:text-accent ${
-                  isActive(link.path) ? 'text-accent' : ''
+                className={`text-secondary-foreground font-medium transition-colors hover:text-gold ${
+                  isActive(link.path) ? 'text-gold' : ''
                 }`}
               >
                 {link.label}
@@ -51,7 +51,7 @@ export default function Navbar() {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-accent-foreground font-medium transition-all hover:scale-105"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold text-primary font-medium transition-all hover:bg-gold-dark hover:scale-105"
           >
             {theme === 'light' ? (
               <>
@@ -74,14 +74,14 @@ export default function Navbar() {
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className="flex items-center gap-2"
                 >
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center overflow-hidden">
+                  <div className="w-10 h-10 rounded-full bg-lavender flex items-center justify-center overflow-hidden">
                     {user?.avatar ? (
                       <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                     ) : (
-                      <User size={20} className="text-secondary-foreground" />
+                      <User size={20} className="text-primary" />
                     )}
                   </div>
-                  <span className="text-primary-foreground font-medium">{user?.name}</span>
+                  <span className="text-secondary-foreground font-medium">{user?.name}</span>
                 </button>
 
                 <AnimatePresence>
@@ -119,12 +119,12 @@ export default function Navbar() {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outline" className="border-primary-foreground/50 text-primary-foreground bg-transparent hover:bg-primary-foreground hover:text-primary">
+                  <Button variant="outline" className="border-secondary-foreground/50 text-secondary-foreground bg-transparent hover:bg-secondary-foreground hover:text-secondary">
                     เข้าสู่ระบบ
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  <Button className="bg-lavender text-primary hover:bg-lavender/80">
                     สร้างบัญชี
                   </Button>
                 </Link>
@@ -148,21 +148,21 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block py-2 px-4 rounded-lg text-primary-foreground font-medium transition-colors ${
-                      isActive(link.path) ? 'bg-primary-foreground/20' : 'hover:bg-primary-foreground/10'
+                    className={`block py-2 px-4 rounded-lg text-secondary-foreground font-medium transition-colors ${
+                      isActive(link.path) ? 'bg-secondary-foreground/20' : 'hover:bg-secondary-foreground/10'
                     }`}
                   >
                     {link.label}
                   </Link>
                 ))}
                 
-                <div className="pt-4 border-t border-primary-foreground/20 space-y-2">
+                <div className="pt-4 border-t border-secondary-foreground/20 space-y-2">
                   {isAuthenticated ? (
                     <>
                       <Link
                         to="/profile"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-primary-foreground"
+                        className="block py-2 px-4 text-secondary-foreground"
                       >
                         โปรไฟล์
                       </Link>
@@ -171,7 +171,7 @@ export default function Navbar() {
                           logout();
                           setIsMenuOpen(false);
                         }}
-                        className="w-full text-left py-2 px-4 text-primary-foreground"
+                        className="w-full text-left py-2 px-4 text-secondary-foreground"
                       >
                         ออกจากระบบ
                       </button>
@@ -181,14 +181,14 @@ export default function Navbar() {
                       <Link
                         to="/login"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-center rounded-lg border border-primary-foreground text-primary-foreground"
+                        className="block py-2 px-4 text-center rounded-lg border border-secondary-foreground text-secondary-foreground"
                       >
                         เข้าสู่ระบบ
                       </Link>
                       <Link
                         to="/register"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-center rounded-lg bg-secondary text-secondary-foreground font-medium"
+                        className="block py-2 px-4 text-center rounded-lg bg-lavender text-primary font-medium"
                       >
                         สร้างบัญชีผู้ใช้
                       </Link>
