@@ -50,12 +50,12 @@ export default function HistoryPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen gradient-hero py-8 md:py-12">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-white dark:from-[#1a2f44] dark:to-[#0F1F2F] py-8 md:py-12">
+        <div className="container mx-auto px-4 max-w-xl">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-2xl md:text-4xl font-bold text-foreground dark:text-white text-center mb-8"
+            className="text-2xl md:text-3xl font-bold text-[#0F1F2F] dark:text-white text-center mb-8"
           >
             ประวัติการแปล
           </motion.h1>
@@ -63,21 +63,21 @@ export default function HistoryPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="card-highlight text-center py-16"
+            className="bg-white dark:bg-[#1a2f44] rounded-xl p-8 border border-gray-200 dark:border-white/10 text-center"
           >
-            <div className="text-6xl mb-4">🔒</div>
-            <h2 className="text-xl font-bold text-foreground dark:text-white mb-2">
+            <div className="text-5xl mb-4">🔒</div>
+            <h2 className="text-lg font-bold text-[#0F1F2F] dark:text-white mb-2">
               เข้าสู่ระบบเพื่อดูประวัติ
             </h2>
-            <p className="text-muted-foreground dark:text-white/70 mb-6">
+            <p className="text-gray-500 dark:text-white/60 mb-6 text-sm">
               กรุณาเข้าสู่ระบบเพื่อดูประวัติการแปลเสียงของคุณ
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/login">
-                <Button className="bg-secondary text-white">เข้าสู่ระบบ</Button>
+                <Button className="bg-[#213B54] hover:bg-[#1a2f44] text-white">เข้าสู่ระบบ</Button>
               </Link>
               <Link to="/register">
-                <Button variant="outline" className="dark:text-white dark:border-white/30">สร้างบัญชี</Button>
+                <Button variant="outline" className="border-gray-300 dark:border-white/30 text-[#213B54] dark:text-white">สร้างบัญชี</Button>
               </Link>
             </div>
           </motion.div>
@@ -87,12 +87,12 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="min-h-screen gradient-hero py-8 md:py-12">
-      <div className="container mx-auto px-4 max-w-3xl">
+    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-white dark:from-[#1a2f44] dark:to-[#0F1F2F] py-8 md:py-12">
+      <div className="container mx-auto px-4 max-w-2xl">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-4xl font-bold text-foreground dark:text-white text-center mb-8"
+          className="text-2xl md:text-3xl font-bold text-[#0F1F2F] dark:text-white text-center mb-8"
         >
           ประวัติการแปล
         </motion.h1>
@@ -101,71 +101,71 @@ export default function HistoryPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="card-highlight mb-6"
+          className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10 mb-4"
         >
-          <h2 className="font-semibold text-foreground dark:text-white mb-4">ค้นหาและคัดกรอง</h2>
-          <div className="flex gap-4">
+          <h2 className="font-semibold text-[#0F1F2F] dark:text-white mb-3 text-sm">ค้นหาและคัดกรอง</h2>
+          <div className="flex gap-3">
             <div className="relative flex-1">
               <Search
-                size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground dark:text-white/50"
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white/40"
               />
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ค้นหาข้อความ หรือคำสำคัญ"
-                className="pl-10 dark:bg-secondary dark:text-white dark:placeholder:text-white/50"
+                className="pl-9 bg-gray-50 dark:bg-[#213B54] border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-sm"
               />
             </div>
-            <Button variant="outline" size="icon" className="dark:border-white/30 dark:text-white">
-              <Filter size={18} />
+            <Button variant="outline" size="icon" className="border-gray-300 dark:border-white/30 text-[#213B54] dark:text-white">
+              <Filter size={16} />
             </Button>
           </div>
         </motion.div>
 
         {/* History List */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {mockHistory.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="card-highlight"
+              className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <Calendar size={16} className="text-muted-foreground dark:text-white/50" />
-                    <span className="text-sm text-muted-foreground dark:text-white/70">
+                    <Calendar size={14} className="text-gray-400 dark:text-white/40" />
+                    <span className="text-xs text-gray-500 dark:text-white/60">
                       {item.date}
                     </span>
                   </div>
-                  <p className="text-foreground dark:text-white line-clamp-2">{item.text}</p>
+                  <p className="text-[#0F1F2F] dark:text-white text-sm line-clamp-2">{item.text}</p>
                 </div>
                 <div className="flex gap-2">
                   <Button
                     size="sm"
-                    className="flex items-center gap-1 bg-secondary text-white hover:bg-navy-light"
+                    className="flex items-center gap-1 bg-[#213B54] hover:bg-[#1a2f44] text-white text-xs px-3"
                   >
-                    <Eye size={14} />
+                    <Eye size={12} />
                     <span className="hidden sm:inline">ดูวิดีโอ</span>
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex items-center gap-1 dark:text-white dark:border-white/30"
+                    className="flex items-center gap-1 border-gray-300 dark:border-white/30 text-[#213B54] dark:text-white text-xs px-3"
                   >
-                    <Edit size={14} />
+                    <Edit size={12} />
                     <span className="hidden sm:inline">แก้ไข</span>
                   </Button>
                   <Button
                     variant="destructive"
                     size="sm"
                     onClick={() => handleDelete(item.id)}
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-1 text-xs px-3"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={12} />
                     <span className="hidden sm:inline">ลบ</span>
                   </Button>
                 </div>
@@ -177,12 +177,12 @@ export default function HistoryPage() {
 
       {/* Delete Confirmation Modal */}
       <Dialog open={showDeleteModal} onOpenChange={setShowDeleteModal}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md bg-white dark:bg-[#1a2f44]">
           <DialogHeader>
-            <DialogTitle className="text-center">ยืนยันการลบประวัติ</DialogTitle>
+            <DialogTitle className="text-center text-[#0F1F2F] dark:text-white">ยืนยันการลบประวัติ</DialogTitle>
           </DialogHeader>
           <div className="py-4 text-center">
-            <p className="text-muted-foreground">
+            <p className="text-gray-500 dark:text-white/60 text-sm">
               คุณต้องการลบประวัตินี้หรือไม่? การกระทำนี้ไม่สามารถย้อนกลับได้
             </p>
           </div>
@@ -190,7 +190,7 @@ export default function HistoryPage() {
             <Button variant="destructive" onClick={confirmDelete}>
               ลบ
             </Button>
-            <Button variant="outline" onClick={() => setShowDeleteModal(false)}>
+            <Button variant="outline" onClick={() => setShowDeleteModal(false)} className="border-gray-300 dark:border-white/30">
               ยกเลิก
             </Button>
           </DialogFooter>

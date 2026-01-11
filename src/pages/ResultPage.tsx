@@ -17,45 +17,44 @@ export default function ResultPage() {
   };
 
   return (
-    <div className="min-h-screen gradient-hero py-8 md:py-12">
-      <div className="container mx-auto px-4 max-w-2xl">
+    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-white dark:from-[#1a2f44] dark:to-[#0F1F2F] py-8 md:py-12">
+      <div className="container mx-auto px-4 max-w-xl">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-4xl font-bold text-foreground dark:text-white text-center mb-8"
+          className="text-2xl md:text-3xl font-bold text-[#0F1F2F] dark:text-white text-center mb-8"
         >
           ผลลัพธ์
         </motion.h1>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Video Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="card-highlight"
+            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Video size={20} className="text-foreground dark:text-white" />
-              <h2 className="font-semibold text-foreground dark:text-white">วิดีโอภาษามือ</h2>
+              <Video size={18} className="text-[#0F1F2F] dark:text-white" />
+              <h2 className="font-semibold text-[#0F1F2F] dark:text-white text-sm">วิดีโอภาษามือ</h2>
             </div>
 
-            <div className="relative aspect-video bg-secondary dark:bg-navy-light rounded-lg overflow-hidden mb-4">
+            <div className="relative aspect-video bg-[#213B54] dark:bg-[#0F1F2F] rounded-lg overflow-hidden mb-4">
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-16 h-16 rounded-full bg-white/80 dark:bg-white/20 flex items-center justify-center hover:bg-white dark:hover:bg-white/30 transition-colors"
+                  className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <Play size={28} className="text-primary dark:text-white ml-1" />
+                  <Play size={24} className="text-white ml-1" />
                 </button>
               </div>
             </div>
 
             <Button
-              variant="secondary"
-              className="w-full bg-secondary text-white hover:bg-navy-light"
+              className="w-full bg-[#213B54] hover:bg-[#1a2f44] text-white text-sm"
             >
-              <Download size={18} className="mr-2" />
+              <Download size={16} className="mr-2" />
               ดาวน์โหลดวิดีโอ
             </Button>
           </motion.div>
@@ -65,10 +64,10 @@ export default function ResultPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="card-highlight"
+            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
           >
-            <h2 className="font-semibold text-foreground dark:text-white mb-3">ข้อความ</h2>
-            <p className="text-foreground dark:text-white/90 leading-relaxed">{mockData.text}</p>
+            <h2 className="font-semibold text-[#0F1F2F] dark:text-white mb-3 text-sm">ข้อความ</h2>
+            <p className="text-[#213B54] dark:text-white/90 leading-relaxed text-sm">{mockData.text}</p>
           </motion.div>
 
           {/* Summary Section */}
@@ -76,10 +75,10 @@ export default function ResultPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="card-highlight"
+            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
           >
-            <h2 className="font-semibold text-foreground dark:text-white mb-3">สรุป</h2>
-            <p className="text-foreground dark:text-white/90 leading-relaxed">{mockData.summary}</p>
+            <h2 className="font-semibold text-[#0F1F2F] dark:text-white mb-3 text-sm">สรุป</h2>
+            <p className="text-[#213B54] dark:text-white/90 leading-relaxed text-sm">{mockData.summary}</p>
           </motion.div>
 
           {/* Keywords Section */}
@@ -87,14 +86,14 @@ export default function ResultPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="card-highlight"
+            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
           >
-            <h2 className="font-semibold text-foreground dark:text-white mb-3"># คำสำคัญ</h2>
+            <h2 className="font-semibold text-[#0F1F2F] dark:text-white mb-3 text-sm"># คำสำคัญ</h2>
             <div className="flex flex-wrap gap-2">
               {mockData.keywords.map((keyword) => (
                 <Badge
                   key={keyword}
-                  className="bg-secondary text-white px-3 py-1 text-sm"
+                  className="bg-[#213B54] text-white px-3 py-1 text-xs"
                 >
                   {keyword}
                 </Badge>
@@ -107,19 +106,19 @@ export default function ResultPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-3"
           >
             <Button
               variant="outline"
               onClick={() => navigate('/translate')}
-              className="py-6 text-foreground dark:text-white dark:border-white/30 dark:hover:bg-white/10"
+              className="py-5 text-[#213B54] dark:text-white border-gray-300 dark:border-white/30 hover:bg-gray-50 dark:hover:bg-white/5 text-sm"
             >
-              <ArrowLeft size={18} className="mr-2" />
+              <ArrowLeft size={16} className="mr-2" />
               ย้อนกลับแก้ไข
             </Button>
             <Button
               onClick={() => navigate('/translate')}
-              className="bg-secondary text-white py-6 hover:bg-navy-light"
+              className="bg-[#213B54] hover:bg-[#1a2f44] text-white py-5 text-sm"
             >
               สร้างเสียงใหม่
             </Button>

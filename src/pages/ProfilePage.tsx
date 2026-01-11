@@ -19,42 +19,42 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen gradient-hero py-8 md:py-12">
-      <div className="container mx-auto px-4 max-w-md">
+    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-white dark:from-[#1a2f44] dark:to-[#0F1F2F] py-8 md:py-12">
+      <div className="container mx-auto px-4 max-w-sm">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="card-highlight text-center"
+          className="bg-white dark:bg-[#1a2f44] rounded-xl p-6 border border-gray-200 dark:border-white/10 text-center"
         >
           {/* Avatar */}
-          <div className="w-24 h-24 rounded-full bg-secondary mx-auto mb-4 flex items-center justify-center overflow-hidden">
+          <div className="w-20 h-20 rounded-full bg-[#213B54] mx-auto mb-4 flex items-center justify-center overflow-hidden">
             {user.avatar ? (
               <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
             ) : (
-              <User size={40} className="text-white" />
+              <User size={32} className="text-white" />
             )}
           </div>
 
           {/* User Info */}
-          <h1 className="text-2xl font-bold text-foreground dark:text-white mb-1">{user.name}</h1>
-          <p className="text-muted-foreground dark:text-white/70 mb-6">{user.email}</p>
+          <h1 className="text-xl font-bold text-[#0F1F2F] dark:text-white mb-1">{user.name}</h1>
+          <p className="text-gray-500 dark:text-white/60 text-sm mb-6">{user.email}</p>
 
           {/* Actions */}
-          <div className="space-y-3">
-            <Button variant="outline" className="w-full justify-start dark:text-white dark:border-white/30">
-              <Settings size={18} className="mr-3" />
+          <div className="space-y-2">
+            <Button variant="outline" className="w-full justify-start border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white text-sm">
+              <Settings size={16} className="mr-3" />
               จัดการบัญชี
             </Button>
-            <Button variant="outline" className="w-full justify-start dark:text-white dark:border-white/30">
-              <User size={18} className="mr-3" />
+            <Button variant="outline" className="w-full justify-start border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white text-sm">
+              <User size={16} className="mr-3" />
               สลับบัญชี
             </Button>
             <Button
               variant="outline"
               onClick={handleLogout}
-              className="w-full justify-start text-destructive hover:text-destructive dark:border-white/30"
+              className="w-full justify-start border-gray-200 dark:border-white/10 text-red-500 hover:text-red-600 text-sm"
             >
-              <LogOut size={18} className="mr-3" />
+              <LogOut size={16} className="mr-3" />
               ออกจากระบบ
             </Button>
           </div>
