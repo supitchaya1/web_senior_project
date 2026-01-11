@@ -22,25 +22,27 @@ export default function Navbar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-secondary shadow-lg">
+    <nav className="sticky top-0 z-50 bg-background dark:bg-primary border-b border-border dark:border-border/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-secondary-foreground"
+            className="lg:hidden p-2 text-foreground dark:text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Desktop Navigation - Left */}
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-secondary-foreground font-medium transition-colors hover:text-gold ${
-                  isActive(link.path) ? 'text-gold' : ''
+                className={`font-medium transition-colors ${
+                  isActive(link.path) 
+                    ? 'text-gold' 
+                    : 'text-foreground dark:text-white hover:text-gold'
                 }`}
               >
                 {link.label}
@@ -48,10 +50,10 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle - Center */}
           <button
             onClick={toggleTheme}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold text-primary font-medium transition-all hover:bg-gold-dark hover:scale-105"
+            className="flex items-center gap-2 px-5 py-2 rounded-full font-medium transition-all hover:scale-105 bg-gold text-primary dark:bg-secondary dark:text-white"
           >
             {theme === 'light' ? (
               <>
@@ -66,7 +68,7 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Auth Buttons / Profile */}
+          {/* Auth Buttons / Profile - Right */}
           <div className="hidden lg:flex items-center gap-3">
             {isAuthenticated ? (
               <div className="relative">
@@ -74,14 +76,14 @@ export default function Navbar() {
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className="flex items-center gap-2"
                 >
-                  <div className="w-10 h-10 rounded-full bg-lavender flex items-center justify-center overflow-hidden">
+                  <div className="w-10 h-10 rounded-full bg-lavender dark:bg-lavender flex items-center justify-center overflow-hidden">
                     {user?.avatar ? (
                       <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                     ) : (
                       <User size={20} className="text-primary" />
                     )}
                   </div>
-                  <span className="text-secondary-foreground font-medium">{user?.name}</span>
+                  <span className="text-foreground dark:text-white font-medium">{user?.name}</span>
                 </button>
 
                 <AnimatePresence>
@@ -90,7 +92,7 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="absolute right-0 mt-2 w-48 bg-card rounded-lg shadow-lg border border-border overflow-hidden"
+                      className="absolute right-0 mt-2 w-48 bg-card rounded-lg shadow-lg border border-border overflow-hidden z-50"
                     >
                       <div className="p-4 border-b border-border">
                         <p className="font-medium text-card-foreground">{user?.name}</p>
@@ -119,7 +121,10 @@ export default function Navbar() {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outline" className="border-secondary-foreground/50 text-secondary-foreground bg-transparent hover:bg-secondary-foreground hover:text-secondary">
+                  <Button 
+                    variant="outline" 
+                    className="border-foreground/30 dark:border-white/50 text-foreground dark:text-white bg-transparent hover:bg-foreground/10 dark:hover:bg-white/10"
+                  >
                     เข้าสู่ระบบ
                   </Button>
                 </Link>
@@ -148,21 +153,21 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block py-2 px-4 rounded-lg text-secondary-foreground font-medium transition-colors ${
-                      isActive(link.path) ? 'bg-secondary-foreground/20' : 'hover:bg-secondary-foreground/10'
+                    className={`block py-2 px-4 rounded-lg font-medium transition-colors text-foreground dark:text-white ${
+                      isActive(link.path) ? 'bg-gold/20 text-gold' : 'hover:bg-muted'
                     }`}
                   >
                     {link.label}
                   </Link>
                 ))}
                 
-                <div className="pt-4 border-t border-secondary-foreground/20 space-y-2">
+                <div className="pt-4 border-t border-border space-y-2">
                   {isAuthenticated ? (
                     <>
                       <Link
                         to="/profile"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-secondary-foreground"
+                        className="block py-2 px-4 text-foreground dark:text-white"
                       >
                         โปรไฟล์
                       </Link>
@@ -171,7 +176,7 @@ export default function Navbar() {
                           logout();
                           setIsMenuOpen(false);
                         }}
-                        className="w-full text-left py-2 px-4 text-secondary-foreground"
+                        className="w-full text-left py-2 px-4 text-destructive"
                       >
                         ออกจากระบบ
                       </button>
@@ -181,7 +186,7 @@ export default function Navbar() {
                       <Link
                         to="/login"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-center rounded-lg border border-secondary-foreground text-secondary-foreground"
+                        className="block py-2 px-4 text-center rounded-lg border border-foreground/30 dark:border-white/30 text-foreground dark:text-white"
                       >
                         เข้าสู่ระบบ
                       </Link>

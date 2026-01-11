@@ -31,28 +31,28 @@ export default function ProfilePage() {
             {user.avatar ? (
               <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
             ) : (
-              <User size={40} className="text-primary" />
+              <User size={40} className="text-white" />
             )}
           </div>
 
           {/* User Info */}
-          <h1 className="text-2xl font-bold text-foreground mb-1">{user.name}</h1>
-          <p className="text-muted-foreground mb-6">{user.email}</p>
+          <h1 className="text-2xl font-bold text-foreground dark:text-white mb-1">{user.name}</h1>
+          <p className="text-muted-foreground dark:text-white/70 mb-6">{user.email}</p>
 
           {/* Actions */}
           <div className="space-y-3">
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start dark:text-white dark:border-white/30">
               <Settings size={18} className="mr-3" />
               จัดการบัญชี
             </Button>
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start dark:text-white dark:border-white/30">
               <User size={18} className="mr-3" />
               สลับบัญชี
             </Button>
             <Button
               variant="outline"
               onClick={handleLogout}
-              className="w-full justify-start text-destructive hover:text-destructive"
+              className="w-full justify-start text-destructive hover:text-destructive dark:border-white/30"
             >
               <LogOut size={18} className="mr-3" />
               ออกจากระบบ

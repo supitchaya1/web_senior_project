@@ -22,7 +22,6 @@ export default function TranslatePage() {
 
   const handleStartRecording = () => {
     setIsRecording(true);
-    // Simulate recording
   };
 
   const handleStopRecording = () => {
@@ -38,7 +37,6 @@ export default function TranslatePage() {
   };
 
   const handleSubmit = () => {
-    // Simulate processing - randomly show result or not found
     const hasResult = Math.random() > 0.3;
     if (hasResult) {
       navigate('/result');
@@ -53,7 +51,7 @@ export default function TranslatePage() {
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-4xl font-bold text-primary text-center mb-8"
+          className="text-2xl md:text-4xl font-bold text-foreground dark:text-white text-center mb-8"
         >
           แปลเสียงและข้อความเป็นภาษามือ
         </motion.h1>
@@ -67,8 +65,8 @@ export default function TranslatePage() {
             className="card-highlight"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Mic size={20} className="text-primary" />
-              <h2 className="font-semibold text-foreground">บันทึกเสียง</h2>
+              <Mic size={20} className="text-foreground dark:text-white" />
+              <h2 className="font-semibold text-foreground dark:text-white">บันทึกเสียง</h2>
             </div>
 
             <div className="flex flex-col items-center py-8">
@@ -84,7 +82,7 @@ export default function TranslatePage() {
                       {[...Array(5)].map((_, i) => (
                         <motion.div
                           key={i}
-                          className="w-1 bg-secondary-foreground rounded-full"
+                          className="w-1 bg-white rounded-full"
                           animate={{
                             height: [10, 25, 10],
                           }}
@@ -111,7 +109,7 @@ export default function TranslatePage() {
                   <Mic size={28} className="text-primary" />
                 </button>
               )}
-              <p className="text-muted-foreground mt-4">
+              <p className="text-muted-foreground dark:text-white/70 mt-4">
                 {isRecording ? 'กำลังบันทึก... คลิกเพื่อหยุด' : 'บันทึกเสียง'}
               </p>
             </div>
@@ -126,32 +124,32 @@ export default function TranslatePage() {
           >
             <div className="flex items-center gap-2 mb-4">
               <FileAudio size={20} className="text-gold" />
-              <h2 className="font-semibold text-foreground">อัปโหลดไฟล์เสียง</h2>
+              <h2 className="font-semibold text-foreground dark:text-white">อัปโหลดไฟล์เสียง</h2>
             </div>
 
             <div className="flex flex-col items-center">
               {audioFile ? (
-                <div className="flex items-center gap-2 p-3 bg-background rounded-lg">
-                  <FileAudio size={20} className="text-primary" />
-                  <span className="text-foreground">{audioFile.name}</span>
+                <div className="flex items-center gap-2 p-3 bg-background dark:bg-secondary rounded-lg">
+                  <FileAudio size={20} className="text-foreground dark:text-white" />
+                  <span className="text-foreground dark:text-white">{audioFile.name}</span>
                   <button
                     onClick={() => setAudioFile(null)}
-                    className="p-1 hover:bg-muted rounded"
+                    className="p-1 hover:bg-muted dark:hover:bg-white/10 rounded"
                   >
-                    <X size={16} className="text-muted-foreground" />
+                    <X size={16} className="text-muted-foreground dark:text-white/70" />
                   </button>
                 </div>
               ) : (
                 <Button
                   variant="outline"
                   onClick={() => setShowUploadModal(true)}
-                  className="w-full border-dashed border-2"
+                  className="w-full border-dashed border-2 text-foreground dark:text-white dark:border-white/30 dark:hover:bg-white/10"
                 >
                   <Upload size={18} className="mr-2" />
                   เลือกไฟล์เสียง
                 </Button>
               )}
-              <p className="text-xs text-muted-foreground mt-2">
+              <p className="text-xs text-muted-foreground dark:text-white/60 mt-2">
                 *ไฟล์เสียงของคุณจะถูกใช้เพื่อการแปลเท่านั้น และจะถูกลบโดยอัตโนมัติหลังเสร็จสิ้นการแปล
               </p>
             </div>
@@ -171,7 +169,7 @@ export default function TranslatePage() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="ข้อความจะแสดงที่นี่หลังบันทึกเสียง หรือคุณสามารถพิมพ์ข้อความที่ต้องการได้"
-              className="min-h-[120px] resize-none bg-background"
+              className="min-h-[120px] resize-none bg-background dark:bg-secondary dark:text-white dark:placeholder:text-white/50"
             />
           </motion.div>
 
@@ -184,7 +182,7 @@ export default function TranslatePage() {
             <Button
               onClick={handleSubmit}
               size="lg"
-              className="w-full bg-secondary hover:bg-navy-light text-secondary-foreground font-semibold py-6 rounded-xl"
+              className="w-full bg-secondary hover:bg-navy-light text-white font-semibold py-6 rounded-xl"
             >
               สร้างสรุป คำสำคัญ และวิดีโอภาษามือ
             </Button>

@@ -3,7 +3,7 @@ import { ArrowLeft, Play, Download, Video } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResultPage() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function ResultPage() {
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-4xl font-bold text-primary text-center mb-8"
+          className="text-2xl md:text-4xl font-bold text-foreground dark:text-white text-center mb-8"
         >
           ผลลัพธ์
         </motion.h1>
@@ -36,24 +36,24 @@ export default function ResultPage() {
             className="card-highlight"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Video size={20} className="text-primary" />
-              <h2 className="font-semibold text-foreground">วิดีโอภาษามือ</h2>
+              <Video size={20} className="text-foreground dark:text-white" />
+              <h2 className="font-semibold text-foreground dark:text-white">วิดีโอภาษามือ</h2>
             </div>
 
-            <div className="relative aspect-video bg-card rounded-lg overflow-hidden mb-4">
+            <div className="relative aspect-video bg-secondary dark:bg-navy-light rounded-lg overflow-hidden mb-4">
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-16 h-16 rounded-full bg-background/80 flex items-center justify-center hover:bg-background transition-colors"
+                  className="w-16 h-16 rounded-full bg-white/80 dark:bg-white/20 flex items-center justify-center hover:bg-white dark:hover:bg-white/30 transition-colors"
                 >
-                  <Play size={28} className="text-primary ml-1" />
+                  <Play size={28} className="text-primary dark:text-white ml-1" />
                 </button>
               </div>
             </div>
 
             <Button
               variant="secondary"
-              className="w-full"
+              className="w-full bg-secondary text-white hover:bg-navy-light"
             >
               <Download size={18} className="mr-2" />
               ดาวน์โหลดวิดีโอ
@@ -67,8 +67,8 @@ export default function ResultPage() {
             transition={{ delay: 0.2 }}
             className="card-highlight"
           >
-            <h2 className="font-semibold text-foreground mb-3">ข้อความ</h2>
-            <p className="text-foreground leading-relaxed">{mockData.text}</p>
+            <h2 className="font-semibold text-foreground dark:text-white mb-3">ข้อความ</h2>
+            <p className="text-foreground dark:text-white/90 leading-relaxed">{mockData.text}</p>
           </motion.div>
 
           {/* Summary Section */}
@@ -78,8 +78,8 @@ export default function ResultPage() {
             transition={{ delay: 0.3 }}
             className="card-highlight"
           >
-            <h2 className="font-semibold text-foreground mb-3">สรุป</h2>
-            <p className="text-foreground leading-relaxed">{mockData.summary}</p>
+            <h2 className="font-semibold text-foreground dark:text-white mb-3">สรุป</h2>
+            <p className="text-foreground dark:text-white/90 leading-relaxed">{mockData.summary}</p>
           </motion.div>
 
           {/* Keywords Section */}
@@ -89,13 +89,12 @@ export default function ResultPage() {
             transition={{ delay: 0.4 }}
             className="card-highlight"
           >
-            <h2 className="font-semibold text-foreground mb-3"># คำสำคัญ</h2>
+            <h2 className="font-semibold text-foreground dark:text-white mb-3"># คำสำคัญ</h2>
             <div className="flex flex-wrap gap-2">
               {mockData.keywords.map((keyword) => (
                 <Badge
                   key={keyword}
-                  variant="secondary"
-                  className="bg-primary text-primary-foreground px-3 py-1 text-sm"
+                  className="bg-secondary text-white px-3 py-1 text-sm"
                 >
                   {keyword}
                 </Badge>
@@ -113,14 +112,14 @@ export default function ResultPage() {
             <Button
               variant="outline"
               onClick={() => navigate('/translate')}
-              className="py-6"
+              className="py-6 text-foreground dark:text-white dark:border-white/30 dark:hover:bg-white/10"
             >
               <ArrowLeft size={18} className="mr-2" />
               ย้อนกลับแก้ไข
             </Button>
             <Button
               onClick={() => navigate('/translate')}
-              className="bg-primary py-6"
+              className="bg-secondary text-white py-6 hover:bg-navy-light"
             >
               สร้างเสียงใหม่
             </Button>

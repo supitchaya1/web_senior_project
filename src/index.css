@@ -8,12 +8,12 @@
 @layer base {
   :root {
     /* Light Mode Colors based on Figma */
-    /* 0F1F2F - Dark Navy (Primary) */
-    /* FFFFFF - White */
+    /* 0F1F2F - Dark Navy (Primary text) */
+    /* FFFFFF - White (Background) */
     /* FEC530 - Gold/Yellow (Accent) */
-    /* 213B54 - Navy Blue */
+    /* 213B54 - Navy Blue (Secondary) */
     /* 223C55 - Navy Blue variant */
-    /* C9A7E3 - Light Purple */
+    /* C9A7E3 - Light Purple (Lavender) */
 
     --background: 0 0% 100%;
     --foreground: 210 50% 12%;
@@ -62,11 +62,11 @@
     --gold: 44 99% 59%;
     --gold-dark: 44 95% 50%;
     --lavender: 280 50% 78%;
-    --lavender-light: 280 40% 88%;
+    --lavender-light: 280 40% 92%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsl(280 40% 88%) 0%, hsl(0 0% 100%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(280 50% 78% / 0.3) 0%, hsl(0 0% 100%) 100%);
+    /* Gradients - Light lavender to white for hero sections */
+    --gradient-hero: linear-gradient(180deg, hsl(280 40% 92%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(280 50% 78% / 0.2) 0%, hsl(0 0% 100%) 100%);
     --gradient-button: linear-gradient(135deg, hsl(210 50% 12%) 0%, hsl(208 44% 23%) 100%);
     
     /* Sidebar */
@@ -92,15 +92,15 @@
     --background: 210 50% 12%;
     --foreground: 0 0% 100%;
 
-    --card: 208 44% 23%;
+    --card: 208 44% 20%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 208 44% 20%;
+    --popover: 208 44% 18%;
     --popover-foreground: 0 0% 100%;
 
-    /* Primary - Light Purple #C9A7E3 for dark mode */
-    --primary: 280 50% 78%;
-    --primary-foreground: 210 50% 12%;
+    /* Primary in dark mode - Use lavender for accent */
+    --primary: 210 50% 12%;
+    --primary-foreground: 0 0% 100%;
 
     /* Secondary - Navy Blue #213B54 */
     --secondary: 208 44% 23%;
@@ -116,15 +116,15 @@
 
     /* Muted - #D8C0D0 */
     --muted: 320 25% 80%;
-    --muted-foreground: 0 0% 70%;
+    --muted-foreground: 0 0% 75%;
 
     /* Destructive */
-    --destructive: 0 62% 40%;
+    --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
     /* Border/Input/Ring */
     --border: 208 40% 30%;
-    --input: 208 40% 30%;
+    --input: 208 40% 25%;
     --ring: 280 50% 78%;
 
     /* Custom Dark Colors */
@@ -136,9 +136,9 @@
     --lavender: 280 50% 78%;
     --lavender-light: 320 25% 80%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsl(208 44% 23%) 0%, hsl(210 50% 12%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(208 44% 28%) 0%, hsl(208 44% 23%) 100%);
+    /* Gradients - Navy gradients for dark mode */
+    --gradient-hero: linear-gradient(180deg, hsl(208 44% 18%) 0%, hsl(210 50% 12%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(208 44% 25%) 0%, hsl(208 44% 20%) 100%);
     --gradient-button: linear-gradient(135deg, hsl(280 50% 78%) 0%, hsl(280 40% 70%) 100%);
     
     /* Sidebar Dark */
@@ -204,17 +204,19 @@
     50% { transform: translateY(-10px); }
   }
 
+  /* Step circles with gold background */
   .step-circle {
     @apply flex items-center justify-center w-12 h-12 rounded-full text-lg font-bold;
-    background: hsl(var(--accent));
-    color: hsl(var(--primary));
+    background: hsl(var(--gold));
+    color: hsl(var(--navy-dark));
   }
 
   .dark .step-circle {
-    background: hsl(var(--accent));
-    color: hsl(var(--primary-foreground));
+    background: hsl(var(--gold));
+    color: hsl(var(--navy-dark));
   }
 
+  /* Card highlight - lavender light for light mode, navy card for dark */
   .card-highlight {
     @apply rounded-xl p-6;
     background: hsl(var(--lavender-light));

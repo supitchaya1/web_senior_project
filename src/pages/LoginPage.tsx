@@ -36,13 +36,13 @@ export default function LoginPage() {
         className="w-full max-w-md"
       >
         <div className="card-highlight p-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-primary text-center mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground dark:text-white text-center mb-8">
             เข้าสู่ระบบ
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email" className="flex items-center gap-2">
+              <Label htmlFor="email" className="flex items-center gap-2 text-foreground dark:text-white">
                 <Mail size={16} />
                 อีเมล
               </Label>
@@ -52,12 +52,13 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="กรุณากรอกอีเมล"
+                className="dark:bg-secondary dark:text-white dark:placeholder:text-white/50"
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="flex items-center gap-2">
+              <Label htmlFor="password" className="flex items-center gap-2 text-foreground dark:text-white">
                 <Lock size={16} />
                 รหัสผ่าน
               </Label>
@@ -68,12 +69,13 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="กรุณากรอกรหัสผ่าน"
+                  className="dark:bg-secondary dark:text-white dark:placeholder:text-white/50"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground dark:text-white/50 dark:hover:text-white"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -81,14 +83,14 @@ export default function LoginPage() {
             </div>
 
             <div className="text-right">
-              <Link to="/forgot-password" className="text-sm text-primary hover:underline">
+              <Link to="/forgot-password" className="text-sm text-foreground dark:text-lavender hover:underline">
                 ลืมรหัสผ่าน?
               </Link>
             </div>
 
             <Button
               type="submit"
-              className="w-full bg-secondary text-secondary-foreground py-6"
+              className="w-full bg-secondary text-white py-6 hover:bg-navy-light"
               disabled={isLoading}
             >
               {isLoading ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
@@ -97,16 +99,16 @@ export default function LoginPage() {
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border"></div>
+              <div className="w-full border-t border-border dark:border-white/20"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-lavender-light dark:bg-card px-4 text-muted-foreground">
+              <span className="bg-lavender-light dark:bg-card px-4 text-muted-foreground dark:text-white/70">
                 หรือ
               </span>
             </div>
           </div>
 
-          <Button variant="outline" className="w-full" type="button">
+          <Button variant="outline" className="w-full dark:text-white dark:border-white/30 dark:hover:bg-white/10" type="button">
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -128,9 +130,9 @@ export default function LoginPage() {
             เข้าสู่ระบบด้วย Google
           </Button>
 
-          <p className="text-center mt-6 text-muted-foreground">
+          <p className="text-center mt-6 text-muted-foreground dark:text-white/70">
             ยังไม่มีบัญชี?{' '}
-            <Link to="/register" className="text-primary font-medium hover:underline">
+            <Link to="/register" className="text-foreground dark:text-lavender font-medium hover:underline">
               สร้างบัญชี
             </Link>
           </p>
