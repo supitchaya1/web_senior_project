@@ -36,20 +36,20 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-white dark:from-[#1a2f44] dark:to-[#0F1F2F] flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-[#FEFBF4] dark:from-[#1a2f44] dark:to-[#0F1F2F] flex items-center justify-center py-12 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-sm"
       >
-        <div className="bg-white dark:bg-[#1a2f44] rounded-xl p-6 border border-gray-200 dark:border-white/10">
-          <h1 className="text-2xl font-bold text-[#0F1F2F] dark:text-white text-center mb-6">
+        <div className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-6 bg-[#A6BFE3]">
+          <h1 className="text-2xl font-bold text-[#263F5D] dark:text-white text-center mb-6">
             สร้างบัญชีผู้ใช้
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="flex items-center gap-2 text-[#0F1F2F] dark:text-white text-sm">
+              <Label htmlFor="name" className="flex items-center gap-2 text-[#263F5D] text-sm">
                 <User size={14} />
                 ชื่อผู้ใช้
               </Label>
@@ -59,13 +59,13 @@ export default function RegisterPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="กรุณากรอกชื่อผู้ใช้"
-                className="bg-gray-50 dark:bg-[#213B54] border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-sm"
+                className="bg-white/50 border-2 border-[#223C55] text-[#263F5D] placeholder:text-[#263F5D]/40 text-sm"
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="flex items-center gap-2 text-[#0F1F2F] dark:text-white text-sm">
+              <Label htmlFor="email" className="flex items-center gap-2 text-[#263F5D] text-sm">
                 <Mail size={14} />
                 อีเมล
               </Label>
@@ -75,13 +75,13 @@ export default function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="กรุณากรอกอีเมล"
-                className="bg-gray-50 dark:bg-[#213B54] border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-sm"
+                className="bg-white/50 border-2 border-[#223C55] text-[#263F5D] placeholder:text-[#263F5D]/40 text-sm"
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="flex items-center gap-2 text-[#0F1F2F] dark:text-white text-sm">
+              <Label htmlFor="password" className="flex items-center gap-2 text-[#263F5D] text-sm">
                 <Lock size={14} />
                 รหัสผ่าน
               </Label>
@@ -92,13 +92,13 @@ export default function RegisterPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="กรุณากรอกรหัสผ่าน"
-                  className="bg-gray-50 dark:bg-[#213B54] border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-sm pr-10"
+                  className="bg-white/50 border-2 border-[#223C55] text-[#263F5D] placeholder:text-[#263F5D]/40 text-sm pr-10"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-white/40 dark:hover:text-white/60"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#263F5D]/40 hover:text-[#263F5D]/60"
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -106,7 +106,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword" className="flex items-center gap-2 text-[#0F1F2F] dark:text-white text-sm">
+              <Label htmlFor="confirmPassword" className="flex items-center gap-2 text-[#263F5D] text-sm">
                 <Lock size={14} />
                 ยืนยันรหัสผ่าน
               </Label>
@@ -117,13 +117,13 @@ export default function RegisterPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="กรุณายืนยันรหัสผ่าน"
-                  className="bg-gray-50 dark:bg-[#213B54] border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-sm pr-10"
+                  className="bg-white/50 border-2 border-[#223C55] text-[#263F5D] placeholder:text-[#263F5D]/40 text-sm pr-10"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-white/40 dark:hover:text-white/60"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#263F5D]/40 hover:text-[#263F5D]/60"
                 >
                   {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -132,7 +132,7 @@ export default function RegisterPage() {
 
             <Button
               type="submit"
-              className="w-full bg-[#213B54] hover:bg-[#1a2f44] text-white py-5 text-sm mt-2"
+              className="w-full bg-[#0F1F2F] hover:bg-[#1a2f44] text-[#C9A7E3] py-5 text-sm mt-2"
               disabled={isLoading}
             >
               {isLoading ? 'กำลังสร้างบัญชี...' : 'สร้างบัญชี'}
@@ -141,16 +141,16 @@ export default function RegisterPage() {
 
           <div className="relative my-5">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
+              <div className="w-full border-t-2 border-[#223C55]/30"></div>
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-white dark:bg-[#1a2f44] px-3 text-gray-500 dark:text-white/60">
+              <span className="bg-[#A6BFE3] px-3 text-[#263F5D]/60">
                 หรือ
               </span>
             </div>
           </div>
 
-          <Button variant="outline" className="w-full border-gray-300 dark:border-white/20 text-[#0F1F2F] dark:text-white text-sm" type="button">
+          <Button variant="outline" className="w-full border-2 border-[#223C55] text-[#263F5D] bg-white/50 hover:bg-white/70 text-sm" type="button">
             <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
               <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
               <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
@@ -160,9 +160,9 @@ export default function RegisterPage() {
             สร้างบัญชีด้วย Google
           </Button>
 
-          <p className="text-center mt-5 text-gray-500 dark:text-white/60 text-sm">
+          <p className="text-center mt-5 text-[#263F5D]/60 text-sm">
             มีบัญชีอยู่แล้ว?{' '}
-            <Link to="/login" className="text-[#213B54] dark:text-[#C9A7E3] font-medium hover:underline">
+            <Link to="/login" className="text-[#213B54] font-medium hover:underline">
               เข้าสู่ระบบ
             </Link>
           </p>

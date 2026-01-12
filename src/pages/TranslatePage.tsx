@@ -46,12 +46,12 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-white dark:from-[#1a2f44] dark:to-[#0F1F2F] py-8 md:py-12">
+    <div className="min-h-screen bg-gradient-to-b from-[#E8D5F0] to-[#FEFBF4] dark:from-[#1a2f44] dark:to-[#0F1F2F] py-8 md:py-12">
       <div className="container mx-auto px-4 max-w-xl">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-3xl font-bold text-[#0F1F2F] dark:text-white text-center mb-8"
+          className="text-2xl md:text-3xl font-bold text-[#263F5D] dark:text-[#D8C0D0] text-center mb-8"
         >
           แปลเสียงและข้อความเป็นภาษามือ
         </motion.h1>
@@ -62,11 +62,11 @@ export default function TranslatePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
+            className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Mic size={18} className="text-[#0F1F2F] dark:text-white" />
-              <h2 className="font-semibold text-[#0F1F2F] dark:text-white text-sm">บันทึกเสียง</h2>
+              <Mic size={18} className="text-[#263F5D]" />
+              <h2 className="font-semibold text-[#263F5D] text-sm">บันทึกเสียง</h2>
             </div>
 
             <div className="flex flex-col items-center py-6">
@@ -99,12 +99,12 @@ export default function TranslatePage() {
               ) : (
                 <button
                   onClick={handleStartRecording}
-                  className="w-14 h-14 rounded-full bg-[#C9A7E3] flex items-center justify-center hover:bg-[#C9A7E3]/80 transition-colors"
+                  className="w-14 h-14 rounded-full bg-[#C9A7E3] flex items-center justify-center hover:bg-[#C9A7E3]/80 transition-colors border-2 border-[#223C55]"
                 >
                   <Mic size={24} className="text-[#0F1F2F]" />
                 </button>
               )}
-              <p className="text-[#213B54]/70 dark:text-white/70 mt-3 text-sm">
+              <p className="text-[#263F5D] mt-3 text-sm">
                 {isRecording ? 'กำลังบันทึก... คลิกเพื่อหยุด' : 'บันทึกเสียง'}
               </p>
             </div>
@@ -115,36 +115,36 @@ export default function TranslatePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
+            className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <div className="flex items-center gap-2 mb-4">
               <FileAudio size={18} className="text-[#FEC530]" />
-              <h2 className="font-semibold text-[#0F1F2F] dark:text-white text-sm">อัปโหลดไฟล์เสียง</h2>
+              <h2 className="font-semibold text-[#263F5D] text-sm">อัปโหลดไฟล์เสียง</h2>
             </div>
 
             <div className="flex flex-col items-center">
               {audioFile ? (
-                <div className="flex items-center gap-2 p-2.5 bg-gray-50 dark:bg-[#213B54] rounded-lg w-full">
-                  <FileAudio size={18} className="text-[#0F1F2F] dark:text-white" />
-                  <span className="text-[#0F1F2F] dark:text-white text-sm flex-1 truncate">{audioFile.name}</span>
+                <div className="flex items-center gap-2 p-2.5 bg-white/50 rounded-lg w-full">
+                  <FileAudio size={18} className="text-[#263F5D]" />
+                  <span className="text-[#263F5D] text-sm flex-1 truncate">{audioFile.name}</span>
                   <button
                     onClick={() => setAudioFile(null)}
-                    className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded"
+                    className="p-1 hover:bg-white/50 rounded"
                   >
-                    <X size={14} className="text-gray-500 dark:text-white/70" />
+                    <X size={14} className="text-[#263F5D]" />
                   </button>
                 </div>
               ) : (
                 <Button
                   variant="outline"
                   onClick={() => setShowUploadModal(true)}
-                  className="w-full border border-gray-300 dark:border-white/30 text-[#213B54] dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-white/5 text-sm"
+                  className="w-full border-2 border-[#223C55] text-[#263F5D] bg-white/50 hover:bg-white/70 text-sm"
                 >
                   <Upload size={16} className="mr-2" />
                   เลือกไฟล์เสียง
                 </Button>
               )}
-              <p className="text-xs text-gray-500 dark:text-white/50 mt-2">
+              <p className="text-xs text-[#263F5D]/70 mt-2">
                 *ไฟล์เสียงของคุณจะถูกใช้เพื่อการแปลเท่านั้น และจะถูกลบโดยอัตโนมัติหลังเสร็จสิ้นการแปล
               </p>
             </div>
@@ -155,7 +155,7 @@ export default function TranslatePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-[#1a2f44] rounded-xl p-5 border border-gray-200 dark:border-white/10"
+            className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <h2 className="font-semibold text-[#FEC530] mb-3 text-sm">
               ข้อความที่ได้ / พิมพ์ข้อความ
@@ -164,7 +164,7 @@ export default function TranslatePage() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="ข้อความจะแสดงที่นี่หลังบันทึกเสียง หรือคุณสามารถพิมพ์ข้อความที่ต้องการได้"
-              className="min-h-[100px] resize-none bg-gray-50 dark:bg-[#213B54] border-gray-200 dark:border-white/10 text-[#0F1F2F] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-sm"
+              className="min-h-[100px] resize-none bg-white/50 border-2 border-[#223C55] text-[#263F5D] placeholder:text-[#263F5D]/50 text-sm"
             />
           </motion.div>
 
@@ -177,7 +177,7 @@ export default function TranslatePage() {
             <Button
               onClick={handleSubmit}
               size="lg"
-              className="w-full bg-[#213B54] hover:bg-[#1a2f44] text-white font-semibold py-5 rounded-xl text-sm"
+              className="w-full bg-[#0F1F2F] hover:bg-[#1a2f44] text-[#C9A7E3] font-semibold py-5 rounded-xl text-sm"
             >
               สร้างสรุป คำสำคัญ และวิดีโอภาษามือ
             </Button>
@@ -189,11 +189,11 @@ export default function TranslatePage() {
       <Dialog open={showUploadModal} onOpenChange={setShowUploadModal}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-[#1a2f44]">
           <DialogHeader>
-            <DialogTitle className="text-[#0F1F2F] dark:text-white">อัพโหลดไฟล์</DialogTitle>
+            <DialogTitle className="text-[#263F5D] dark:text-white">อัพโหลดไฟล์</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center py-8 border-2 border-dashed border-gray-300 dark:border-white/20 rounded-lg">
-            <Upload size={40} className="text-gray-400 dark:text-white/40 mb-4" />
-            <p className="text-gray-500 dark:text-white/60 mb-2 text-sm">วางไฟล์ที่นี่ หรือ</p>
+          <div className="flex flex-col items-center py-8 border-2 border-dashed border-[#223C55] dark:border-white/20 rounded-lg bg-[#A6BFE3]/30">
+            <Upload size={40} className="text-[#263F5D]/40 mb-4" />
+            <p className="text-[#263F5D]/60 mb-2 text-sm">วางไฟล์ที่นี่ หรือ</p>
             <Button
               variant="link"
               onClick={() => fileInputRef.current?.click()}
@@ -217,16 +217,16 @@ export default function TranslatePage() {
         <DialogContent className="sm:max-w-md text-center bg-white dark:bg-[#1a2f44]">
           <div className="py-6">
             <div className="text-5xl mb-4">🤟</div>
-            <h2 className="text-lg font-bold text-[#0F1F2F] dark:text-white mb-2">
+            <h2 className="text-lg font-bold text-[#263F5D] dark:text-white mb-2">
               ขออภัย ไม่พบคำศัพท์นี้
             </h2>
-            <p className="text-gray-500 dark:text-white/60 mb-6 text-sm">
+            <p className="text-[#263F5D]/60 dark:text-white/60 mb-6 text-sm">
               ระบบยังไม่มีข้อมูลภาษามือสำหรับคำที่คุณพูด กรุณาลองพูดใหม่อีกครั้ง
               หรือใช้คำที่มีความหมายใกล้เคียง
             </p>
             <Button
               onClick={() => setShowNotFoundModal(false)}
-              className="bg-[#213B54] hover:bg-[#1a2f44] text-white"
+              className="bg-[#0F1F2F] hover:bg-[#1a2f44] text-[#C9A7E3]"
             >
               พูดอีกครั้ง
             </Button>

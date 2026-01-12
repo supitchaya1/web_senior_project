@@ -22,72 +22,75 @@ export default function Navbar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white dark:bg-[#0F1F2F] shadow-sm">
+    <nav className="sticky top-0 z-50 bg-[#FEFBF4] dark:bg-[#0F1F2F] shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-14">
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-[#213B54] dark:text-white"
+            className="lg:hidden p-2 text-[#263F5D] dark:text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Desktop Navigation - Left */}
-          <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`font-medium text-sm transition-colors ${
-                  isActive(link.path) 
-                    ? 'text-[#FEC530]' 
-                    : 'text-[#213B54] dark:text-white hover:text-[#FEC530]'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center justify-center flex-1">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`font-medium text-sm transition-colors px-4 py-2 rounded-full ${
+                    isActive(link.path) 
+                      ? 'bg-white dark:bg-white/20 text-[#263F5D] dark:text-white shadow-sm' 
+                      : 'text-[#C9A7E3] hover:text-[#263F5D] dark:hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {/* Theme Toggle - Center */}
-          <button
-            onClick={toggleTheme}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-full font-medium text-sm transition-all ${
-              theme === 'light' 
-                ? 'bg-[#FEC530] text-[#0F1F2F]' 
-                : 'bg-[#213B54] text-white border border-white/30'
-            }`}
-          >
-            {theme === 'light' ? (
-              <>
-                <Sun size={16} />
-                <span className="hidden sm:inline">โหมดสว่าง</span>
-              </>
-            ) : (
-              <>
-                <Moon size={16} />
-                <span className="hidden sm:inline">โหมดมืด</span>
-              </>
-            )}
-          </button>
+          {/* Right Section: Theme Toggle + Profile/Auth */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className={`flex items-center gap-2 px-4 py-1.5 rounded-full font-medium text-sm transition-all ${
+                theme === 'light' 
+                  ? 'bg-[#FEC530] text-[#0F1F2F]' 
+                  : 'bg-[#213B54] text-white border border-white/30'
+              }`}
+            >
+              {theme === 'light' ? (
+                <>
+                  <Sun size={16} />
+                  <span className="hidden sm:inline">สว่าง</span>
+                </>
+              ) : (
+                <>
+                  <Moon size={16} />
+                  <span className="hidden sm:inline">มืด</span>
+                </>
+              )}
+            </button>
 
-          {/* Auth Buttons / Profile - Right */}
-          <div className="hidden lg:flex items-center gap-2">
-            {isAuthenticated ? (
+            {/* Profile Button (shown when logged in) */}
+            {isAuthenticated && (
               <div className="relative">
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className="flex items-center gap-2"
                 >
-                  <div className="w-9 h-9 rounded-full bg-[#C9A7E3] flex items-center justify-center overflow-hidden">
+                  <div className="w-9 h-9 rounded-full bg-[#C9A7E3] flex items-center justify-center overflow-hidden border-2 border-white dark:border-white/30">
                     {user?.avatar ? (
                       <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                     ) : (
                       <User size={18} className="text-[#0F1F2F]" />
                     )}
                   </div>
-                  <span className="text-[#213B54] dark:text-white font-medium text-sm">{user?.name}</span>
+                  <span className="hidden lg:inline text-[#263F5D] dark:text-white font-medium text-sm">{user?.name}</span>
                 </button>
 
                 <AnimatePresence>
@@ -96,15 +99,15 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#213B54] rounded-lg shadow-lg border border-gray-200 dark:border-white/20 overflow-hidden z-50"
+                      className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#213B54] rounded-lg shadow-lg border border-[#223C55]/20 dark:border-white/20 overflow-hidden z-50"
                     >
                       <div className="p-3 border-b border-gray-200 dark:border-white/20">
-                        <p className="font-medium text-[#0F1F2F] dark:text-white text-sm">{user?.name}</p>
+                        <p className="font-medium text-[#263F5D] dark:text-white text-sm">{user?.name}</p>
                         <p className="text-xs text-gray-500 dark:text-white/70">{user?.email}</p>
                       </div>
                       <Link
                         to="/profile"
-                        className="block px-3 py-2 text-[#0F1F2F] dark:text-white text-sm hover:bg-gray-100 dark:hover:bg-white/10"
+                        className="block px-3 py-2 text-[#263F5D] dark:text-white text-sm hover:bg-gray-100 dark:hover:bg-white/10"
                         onClick={() => setIsProfileOpen(false)}
                       >
                         จัดการบัญชี
@@ -122,13 +125,16 @@ export default function Navbar() {
                   )}
                 </AnimatePresence>
               </div>
-            ) : (
-              <>
+            )}
+
+            {/* Auth Buttons (shown when not logged in) - Desktop only */}
+            {!isAuthenticated && (
+              <div className="hidden lg:flex items-center gap-2">
                 <Link to="/login">
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="border-[#213B54] dark:border-white/50 text-[#213B54] dark:text-white bg-transparent hover:bg-gray-100 dark:hover:bg-white/10 rounded-full px-4"
+                    className="border-[#223C55] dark:border-white/50 text-[#263F5D] dark:text-white bg-transparent hover:bg-gray-100 dark:hover:bg-white/10 rounded-full px-4"
                   >
                     เข้าสู่ระบบ
                   </Button>
@@ -136,12 +142,12 @@ export default function Navbar() {
                 <Link to="/register">
                   <Button 
                     size="sm"
-                    className="bg-[#C9A7E3] text-[#0F1F2F] hover:bg-[#C9A7E3]/80 rounded-full px-4"
+                    className="bg-[#0F1F2F] text-[#C9A7E3] hover:bg-[#1a2f44] rounded-full px-4"
                   >
                     สร้างบัญชี
                   </Button>
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>
@@ -163,8 +169,8 @@ export default function Navbar() {
                     onClick={() => setIsMenuOpen(false)}
                     className={`block py-2 px-4 rounded-lg font-medium text-sm ${
                       isActive(link.path) 
-                        ? 'bg-[#FEC530]/20 text-[#FEC530]' 
-                        : 'text-[#213B54] dark:text-white hover:bg-gray-100 dark:hover:bg-white/10'
+                        ? 'bg-white text-[#263F5D] shadow-sm dark:bg-white/20 dark:text-white' 
+                        : 'text-[#C9A7E3] hover:bg-gray-100 dark:hover:bg-white/10'
                     }`}
                   >
                     {link.label}
@@ -177,7 +183,7 @@ export default function Navbar() {
                       <Link
                         to="/profile"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-[#213B54] dark:text-white text-sm"
+                        className="block py-2 px-4 text-[#263F5D] dark:text-white text-sm"
                       >
                         โปรไฟล์
                       </Link>
@@ -196,14 +202,14 @@ export default function Navbar() {
                       <Link
                         to="/login"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-center rounded-full border border-[#213B54] dark:border-white/30 text-[#213B54] dark:text-white text-sm"
+                        className="block py-2 px-4 text-center rounded-full border border-[#223C55] dark:border-white/30 text-[#263F5D] dark:text-white text-sm"
                       >
                         เข้าสู่ระบบ
                       </Link>
                       <Link
                         to="/register"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-center rounded-full bg-[#C9A7E3] text-[#0F1F2F] font-medium text-sm"
+                        className="block py-2 px-4 text-center rounded-full bg-[#0F1F2F] text-[#C9A7E3] font-medium text-sm"
                       >
                         สร้างบัญชีผู้ใช้
                       </Link>

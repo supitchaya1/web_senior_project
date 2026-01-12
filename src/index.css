@@ -8,25 +8,26 @@
 @layer base {
   :root {
     /* Light Mode Colors based on Figma */
-    /* 0F1F2F - Dark Navy (Primary text) */
-    /* FFFFFF - White (Background) */
+    /* Background: #FEFBF4 (warm white) */
+    /* Text: #263F5D (dark blue) */
     /* FEC530 - Gold/Yellow (Accent) */
     /* 213B54 - Navy Blue (Secondary) */
-    /* 223C55 - Navy Blue variant */
+    /* 223C55 - Navy Blue variant (Frame border) */
     /* C9A7E3 - Light Purple (Lavender) */
+    /* A6BFE3 - Light Blue (Frame background) */
 
-    --background: 0 0% 100%;
-    --foreground: 210 50% 12%;
+    --background: 42 67% 97%;
+    --foreground: 213 41% 26%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 50% 12%;
+    --card-foreground: 213 41% 26%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 50% 12%;
+    --popover-foreground: 213 41% 26%;
 
     /* Primary - Deep Navy #0F1F2F */
     --primary: 210 50% 12%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 280 50% 78%;
 
     /* Secondary - Navy Blue #213B54 */
     --secondary: 208 44% 23%;
@@ -39,6 +40,10 @@
     /* Purple - #C9A7E3 */
     --purple: 280 50% 78%;
     --purple-foreground: 210 50% 12%;
+
+    /* Frame colors */
+    --frame-border: 209 44% 24%;
+    --frame-bg: 213 50% 78%;
 
     /* Muted */
     --muted: 210 20% 96%;
@@ -63,15 +68,16 @@
     --gold-dark: 44 95% 50%;
     --lavender: 280 50% 78%;
     --lavender-light: 280 40% 92%;
+    --text-main: 213 41% 26%;
 
     /* Gradients - Light lavender to white for hero sections */
-    --gradient-hero: linear-gradient(180deg, hsl(280 40% 92%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(280 40% 92%) 0%, hsl(42 67% 97%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(280 50% 78% / 0.2) 0%, hsl(0 0% 100%) 100%);
     --gradient-button: linear-gradient(135deg, hsl(210 50% 12%) 0%, hsl(208 44% 23%) 100%);
     
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 210 50% 12%;
+    --sidebar-foreground: 213 41% 26%;
     --sidebar-primary: 210 50% 12%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 280 40% 88%;
@@ -84,10 +90,10 @@
     /* Dark Mode Colors based on Figma */
     /* 0F1F2F - Dark Navy (Background) */
     /* FFFFFF - White (Text) */
-    /* 000000 - Black */
-    /* D8C0D0 - Muted Pink/Purple */
+    /* D8C0D0 - Muted Pink/Purple (Headers like "แปลเสียงและข้อความ") */
     /* C9A7E3 - Light Purple (Accent) */
-    /* 213B54 - Navy Blue */
+    /* 213B54 - Navy Blue (Frame border) */
+    /* A6BFE3 - Light Blue (Frame background) */
 
     --background: 210 50% 12%;
     --foreground: 0 0% 100%;
@@ -98,7 +104,7 @@
     --popover: 208 44% 18%;
     --popover-foreground: 0 0% 100%;
 
-    /* Primary in dark mode - Use lavender for accent */
+    /* Primary in dark mode */
     --primary: 210 50% 12%;
     --primary-foreground: 0 0% 100%;
 
@@ -114,9 +120,16 @@
     --purple: 280 50% 78%;
     --purple-foreground: 210 50% 12%;
 
+    /* Frame colors for dark mode */
+    --frame-border: 208 44% 23%;
+    --frame-bg: 213 50% 78%;
+
     /* Muted - #D8C0D0 */
     --muted: 320 25% 80%;
     --muted-foreground: 0 0% 75%;
+
+    /* Header text color - D8C0D0 */
+    --header-text: 320 25% 80%;
 
     /* Destructive */
     --destructive: 0 62% 50%;
@@ -135,6 +148,7 @@
     --gold-dark: 44 95% 50%;
     --lavender: 280 50% 78%;
     --lavender-light: 320 25% 80%;
+    --text-main: 0 0% 100%;
 
     /* Gradients - Navy gradients for dark mode */
     --gradient-hero: linear-gradient(180deg, hsl(208 44% 18%) 0%, hsl(210 50% 12%) 100%);
@@ -216,6 +230,18 @@
     color: hsl(var(--navy-dark));
   }
 
+  /* Frame styles - border #223C55, bg #A6BFE3 */
+  .frame-box {
+    @apply rounded-xl p-4;
+    border: 2px solid hsl(var(--frame-border));
+    background: hsl(var(--frame-bg));
+  }
+
+  .dark .frame-box {
+    border: 2px solid hsl(var(--frame-border));
+    background: hsl(var(--frame-bg));
+  }
+
   /* Card highlight - lavender light for light mode, navy card for dark */
   .card-highlight {
     @apply rounded-xl p-6;
@@ -228,7 +254,12 @@
 
   /* Button styles */
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:opacity-90;
+    @apply text-[#C9A7E3] font-semibold;
+    background: #0F1F2F;
+  }
+
+  .btn-primary:hover {
+    background: #1a2f44;
   }
 
   .btn-accent {
