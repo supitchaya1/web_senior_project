@@ -22,7 +22,7 @@ export default function Navbar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#FEFBF4] dark:bg-[#0F1F2F] shadow-sm">
+    <nav className="sticky top-0 z-50 bg-[#0F1F2F] shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-14">
           {/* Mobile Menu Button */}

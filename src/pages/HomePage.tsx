@@ -59,18 +59,18 @@ export default function HomePage() {
       {/* Steps Section */}
       <section className="py-12 bg-[#FEFBF4] dark:bg-[#0F1F2F]">
         <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xl md:text-2xl font-bold text-center text-[#263F5D] dark:text-[#D8C0D0] mb-8"
-          >
-            ใช้งานง่ายใน 3 ขั้นตอน
-          </motion.h2>
-
-          {/* Steps with frame */}
+          {/* Steps with frame - includes header inside */}
           <div className="max-w-4xl mx-auto">
             <div className="border-2 border-[#223C55] dark:border-[#213B54] rounded-2xl bg-[#A6BFE3] p-6 md:p-8">
+              <motion.h2
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-xl md:text-2xl font-bold text-center text-[#263F5D] dark:text-[#263F5D] mb-8"
+              >
+                ใช้งานง่ายใน 3 ขั้นตอน
+              </motion.h2>
+
               <div className="grid md:grid-cols-3 gap-6">
                 {steps.map((step, index) => (
                   <motion.div
@@ -81,11 +81,11 @@ export default function HomePage() {
                     transition={{ delay: index * 0.2 }}
                     className="text-center"
                   >
-                    {/* Number with frame */}
-                    <div className="w-16 h-16 rounded-full border-2 border-[#223C55] dark:border-[#213B54] bg-[#FEC530] text-[#0F1F2F] flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+                    {/* Number with rounded square */}
+                    <div className="w-14 h-14 rounded-xl bg-[#213B54] text-white flex items-center justify-center mx-auto mb-4 font-bold text-xl">
                       {step.number}
                     </div>
-                    <p className="text-[#263F5D] dark:text-[#263F5D] font-medium text-sm">
+                    <p className="text-[#263F5D] font-medium text-sm">
                       {step.title}
                     </p>
                   </motion.div>

@@ -65,7 +65,7 @@ export default function TranslatePage() {
             className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Mic size={18} className="text-[#263F5D]" />
+              <Mic size={18} className="text-white" />
               <h2 className="font-semibold text-[#263F5D] text-sm">บันทึกเสียง</h2>
             </div>
 
@@ -99,9 +99,9 @@ export default function TranslatePage() {
               ) : (
                 <button
                   onClick={handleStartRecording}
-                  className="w-14 h-14 rounded-full bg-[#C9A7E3] flex items-center justify-center hover:bg-[#C9A7E3]/80 transition-colors border-2 border-[#223C55]"
+                  className="w-14 h-14 rounded-full bg-[#213B54] flex items-center justify-center hover:bg-[#213B54]/80 transition-colors"
                 >
-                  <Mic size={24} className="text-[#0F1F2F]" />
+                  <Mic size={24} className="text-white" />
                 </button>
               )}
               <p className="text-[#263F5D] mt-3 text-sm">
@@ -118,7 +118,7 @@ export default function TranslatePage() {
             className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <div className="flex items-center gap-2 mb-4">
-              <FileAudio size={18} className="text-[#FEC530]" />
+              <FileAudio size={18} className="text-white" />
               <h2 className="font-semibold text-[#263F5D] text-sm">อัปโหลดไฟล์เสียง</h2>
             </div>
 
@@ -157,7 +157,7 @@ export default function TranslatePage() {
             transition={{ delay: 0.3 }}
             className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
-            <h2 className="font-semibold text-[#FEC530] mb-3 text-sm">
+            <h2 className="font-semibold text-[#263F5D] mb-3 text-sm">
               ข้อความที่ได้ / พิมพ์ข้อความ
             </h2>
             <Textarea
