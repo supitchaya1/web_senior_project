@@ -11,6 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 // Define SpeechRecognition types
 interface SpeechRecognitionEvent extends Event {
@@ -153,44 +154,50 @@ export default function TranslatePage() {
 
   const transcribeAudioFile = async (file: File) => {
     setIsProcessingFile(true);
+    toast.info('กำลังประมวลผลไฟล์เสียงด้วย Whisper AI...');
     
     try {
-      // Create audio element to play the file
-      const audioUrl = URL.createObjectURL(file);
-      const audio = new Audio(audioUrl);
+      // Convert file to base64
+      const arrayBuffer = await file.arrayBuffer();
+      const uint8Array = new Uint8Array(arrayBuffer);
+      let binary = '';
+      const chunkSize = 32768;
       
-      // Check if browser supports speech recognition
-      const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognitionAPI) {
-        toast.error('เบราว์เซอร์ของคุณไม่รองรับการแปลงเสียงเป็นข้อความ');
-        setIsProcessingFile(false);
-        return;
+      for (let i = 0; i < uint8Array.length; i += chunkSize) {
+        const chunk = uint8Array.slice(i, i + chunkSize);
+        binary += String.fromCharCode.apply(null, Array.from(chunk));
+      }
+      
+      const base64Audio = btoa(binary);
+      
+      // Call the edge function
+      const { data, error } = await supabase.functions.invoke('transcribe-audio', {
+        body: { 
+          audio: base64Audio,
+          mimeType: file.type 
+        }
+      });
+
+      if (error) {
+        console.error('Edge function error:', error);
+        throw new Error(error.message || 'Failed to transcribe audio');
       }
 
-      // For file transcription, we'll use a workaround since Web Speech API 
-      // doesn't directly support audio files. We'll play the audio and capture it.
-      toast.info('กำลังประมวลผลไฟล์เสียง...');
-      
-      // Create a simple simulation for now - in production you'd use a proper API
-      // like OpenAI Whisper or Google Speech-to-Text
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Simulate transcription result
-      const sampleTexts = [
-        'สวัสดีครับ วันนี้อากาศดีมาก',
-        'ขอบคุณที่ช่วยเหลือ',
-        'ยินดีต้อนรับสู่ระบบแปลภาษามือ',
-        'สามารถพูดได้เลยครับ',
-      ];
-      const randomText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
-      
-      setText(prev => prev + (prev ? ' ' : '') + randomText);
-      toast.success('แปลงไฟล์เสียงเป็นข้อความสำเร็จ');
-      
-      URL.revokeObjectURL(audioUrl);
+      if (data?.error) {
+        console.error('API error:', data.error);
+        throw new Error(data.error);
+      }
+
+      if (data?.text) {
+        setText(prev => prev + (prev ? ' ' : '') + data.text);
+        toast.success('แปลงไฟล์เสียงเป็นข้อความสำเร็จ');
+      } else {
+        toast.warning('ไม่พบข้อความในไฟล์เสียง');
+      }
     } catch (error) {
       console.error('Error transcribing file:', error);
-      toast.error('เกิดข้อผิดพลาดในการแปลงไฟล์เสียง');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      toast.error(`เกิดข้อผิดพลาด: ${errorMessage}`);
     } finally {
       setIsProcessingFile(false);
     }
