@@ -66,12 +66,12 @@ export default function Navbar() {
               {theme === 'light' ? (
                 <>
                   <Sun size={16} />
-                  <span className="hidden sm:inline">สว่าง</span>
+                  <span className="hidden sm:inline">โหมดสว่าง</span>
                 </>
               ) : (
                 <>
                   <Moon size={16} />
-                  <span className="hidden sm:inline">มืด</span>
+                  <span className="hidden sm:inline">โหมดมืด</span>
                 </>
               )}
             </button>
@@ -134,7 +134,7 @@ export default function Navbar() {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="border-[#223C55] dark:border-white/50 text-[#263F5D] dark:text-white bg-transparent hover:bg-gray-100 dark:hover:bg-white/10 rounded-full px-4"
+                    className="border-[#223C55] dark:border-white/50 text-[#263F5D] dark:text-white bg-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-full px-4"
                   >
                     เข้าสู่ระบบ
                   </Button>
