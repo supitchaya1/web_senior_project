@@ -34,7 +34,7 @@ serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'typhoon-v2-70b-instruct',
+        model: 'typhoon-v2.1-12b-instruct',
         messages: [
           {
             role: 'system',
