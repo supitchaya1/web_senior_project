@@ -203,17 +203,47 @@ export default function TranslatePage() {
     }
   };
 
-  const handleSubmit = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
     if (!text.trim()) {
       toast.error('กรุณาบันทึกเสียงหรือพิมพ์ข้อความก่อน');
       return;
     }
     
-    const hasResult = Math.random() > 0.3;
-    if (hasResult) {
-      navigate('/result');
-    } else {
+    setIsSubmitting(true);
+    toast.info('กำลังสรุปข้อความด้วย TYPHOON AI...');
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('summarize-text', {
+        body: { text: text.trim() }
+      });
+
+      if (error) {
+        console.error('Summarize error:', error);
+        throw new Error(error.message || 'Failed to summarize text');
+      }
+
+      if (data?.error) {
+        console.error('API error:', data.error);
+        throw new Error(data.error);
+      }
+
+      // Navigate to result page with data
+      navigate('/result', { 
+        state: { 
+          originalText: text.trim(),
+          summary: data.summary,
+          keywords: data.keywords 
+        } 
+      });
+    } catch (error) {
+      console.error('Error summarizing:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      toast.error(`เกิดข้อผิดพลาด: ${errorMessage}`);
       setShowNotFoundModal(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -357,9 +387,16 @@ export default function TranslatePage() {
               onClick={handleSubmit}
               size="lg"
               className="w-full bg-[#0F1F2F] hover:bg-[#1a2f44] text-[#C9A7E3] font-semibold py-5 rounded-xl text-sm"
-              disabled={isProcessingFile}
+              disabled={isProcessingFile || isSubmitting}
             >
-              สร้างสรุป คำสำคัญ และวิดีโอภาษามือ
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={16} className="mr-2 animate-spin" />
+                  กำลังประมวลผล...
+                </>
+              ) : (
+                'สร้างสรุป คำสำคัญ และวิดีโอภาษามือ'
+              )}
             </Button>
           </motion.div>
         </div>

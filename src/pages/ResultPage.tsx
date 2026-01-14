@@ -3,17 +3,26 @@ import { ArrowLeft, Play, Download, Video } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+interface ResultState {
+  originalText?: string;
+  summary?: string;
+  keywords?: string[];
+}
 
 export default function ResultPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const mockData = {
-    video: null,
-    text: 'AI เป็นเทคโนโลยีที่สามารถนำมาช่วยในการเรียนรู้สายพันธุ์นกที่อยู่ตามพื้นที่ต่างๆที่เราไม่รู้จักและสามารถบอกแหล่งน้ำที่นกอาศัยอยู่ได้ จึงเป็นสิ่งที่น่าสนใจและน่าเรียนรู้',
-    summary: 'AI เป็นเทคโนโลยีหน่วยมาช่วยในการเรียนรู้สายพันธุ์นกที่เราไม่รู้จักและสามารถบอกแหล่งน้ำที่นกอาศัยอยู่ได้',
-    keywords: ['AI', 'นก', 'น้ำ', 'เทคโนโลยี'],
+  // Get data from navigation state or use defaults
+  const state = location.state as ResultState | null;
+  
+  const resultData = {
+    text: state?.originalText || 'ไม่มีข้อความ',
+    summary: state?.summary || 'ไม่มีข้อมูลสรุป',
+    keywords: state?.keywords || [],
   };
 
   return (
@@ -65,7 +74,7 @@ export default function ResultPage() {
             className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <h2 className="font-semibold text-[#263F5D] mb-3 text-sm">ข้อความ</h2>
-            <p className="text-[#263F5D] leading-relaxed text-sm">{mockData.text}</p>
+            <p className="text-[#263F5D] leading-relaxed text-sm">{resultData.text}</p>
           </motion.div>
 
           {/* Summary Section */}
@@ -76,7 +85,7 @@ export default function ResultPage() {
             className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
             <h2 className="font-semibold text-[#263F5D] mb-3 text-sm">สรุป</h2>
-            <p className="text-[#263F5D] leading-relaxed text-sm">{mockData.summary}</p>
+            <p className="text-[#263F5D] leading-relaxed text-sm">{resultData.summary}</p>
           </motion.div>
 
           {/* Keywords Section */}
@@ -88,14 +97,18 @@ export default function ResultPage() {
           >
             <h2 className="font-semibold text-[#263F5D] mb-3 text-sm"># คำสำคัญ</h2>
             <div className="flex flex-wrap gap-2">
-              {mockData.keywords.map((keyword) => (
-                <Badge
-                  key={keyword}
-                  className="bg-[#0F1F2F] text-[#C9A7E3] px-3 py-1 text-xs"
-                >
-                  {keyword}
-                </Badge>
-              ))}
+              {resultData.keywords.length > 0 ? (
+                resultData.keywords.map((keyword) => (
+                  <Badge
+                    key={keyword}
+                    className="bg-[#0F1F2F] text-[#C9A7E3] px-3 py-1 text-xs"
+                  >
+                    {keyword}
+                  </Badge>
+                ))
+              ) : (
+                <p className="text-[#263F5D]/60 text-sm">ไม่พบคำสำคัญ</p>
+              )}
             </div>
           </motion.div>
 
