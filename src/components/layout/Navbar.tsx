@@ -202,7 +202,7 @@ export default function Navbar() {
                       <Link
                         to="/login"
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 px-4 text-center rounded-full border border-[#223C55] dark:border-white/30 text-[#263F5D] dark:text-white text-sm"
+                        className="block py-2 px-4 text-center rounded-full border border-[#223C55] dark:border-white/30 text-[#003459] dark:text-white text-sm"
                       >
                         เข้าสู่ระบบ
                       </Link>
