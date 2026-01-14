@@ -51,7 +51,7 @@ export default function ResultPage() {
               </div>
             </div>
 
-            <Button className="w-full bg-[#0F1F2F] hover:bg-[#1a2f44] text-[#C9A7E3] text-sm">
+            <Button className="w-full bg-[#0F1F2F] hover:bg-[#1a2f44] text-white text-sm">
               <Download size={16} className="mr-2" />
               ดาวน์โหลดวิดีโอ
             </Button>

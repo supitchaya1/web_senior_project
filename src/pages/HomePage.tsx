@@ -79,15 +79,17 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.2 }}
-                    className="text-center"
+                    className="md:text-center"
                   >
-                    {/* Number with rounded square */}
-                    <div className="w-14 h-14 rounded-xl bg-[#213B54] text-white flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                      {step.number}
+                    {/* Mobile: left-aligned number + text inline, Desktop: centered */}
+                    <div className="flex items-center gap-3 md:flex-col md:gap-4">
+                      <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-[#213B54] text-white flex items-center justify-center font-bold text-lg md:text-xl flex-shrink-0">
+                        {step.number}
+                      </div>
+                      <p className="text-[#263F5D] font-medium text-sm">
+                        {step.title}
+                      </p>
                     </div>
-                    <p className="text-[#263F5D] font-medium text-sm">
-                      {step.title}
-                    </p>
                   </motion.div>
                 ))}
               </div>
