@@ -54,8 +54,8 @@ serve(async (req) => {
             content: `สรุปเนื้อหาข้อความนี้ให้สั้นลง โดยรักษาความหมายและคำสำคัญจากต้นฉบับ แล้วดึงคำสำคัญออกมา:\n\n${text}`
           }
         ],
-        max_tokens: 500,
-        temperature: 0.3,
+        max_tokens: 2048,
+        temperature: 0.2,
       }),
     });
 

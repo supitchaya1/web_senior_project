@@ -103,7 +103,7 @@ export default function ResultPage() {
                     key={keyword}
                     className="bg-[#0F1F2F] text-[#C9A7E3] px-3 py-1 text-xs"
                   >
-                    {keyword}
+                    #{keyword}
                   </Badge>
                 ))
               ) : (

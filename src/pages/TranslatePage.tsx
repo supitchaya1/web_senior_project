@@ -63,7 +63,7 @@ export default function TranslatePage() {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [text, setText] = useState('');
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const [showNotFoundModal, setShowNotFoundModal] = useState(false);
+  const [showSummarizeErrorModal, setShowSummarizeErrorModal] = useState(false);
   const [isProcessingFile, setIsProcessingFile] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -239,9 +239,8 @@ export default function TranslatePage() {
       });
     } catch (error) {
       console.error('Error summarizing:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      toast.error(`เกิดข้อผิดพลาด: ${errorMessage}`);
-      setShowNotFoundModal(true);
+      toast.error('สร้างสรุปไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+      setShowSummarizeErrorModal(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -423,23 +422,22 @@ export default function TranslatePage() {
         </DialogContent>
       </Dialog>
 
-      {/* Not Found Modal */}
-      <Dialog open={showNotFoundModal} onOpenChange={setShowNotFoundModal}>
+      {/* Summarize Error Modal */}
+      <Dialog open={showSummarizeErrorModal} onOpenChange={setShowSummarizeErrorModal}>
         <DialogContent className="sm:max-w-md text-center bg-white dark:bg-[#1a2f44]">
           <div className="py-6">
-            <div className="text-5xl mb-4">🤟</div>
+            <div className="text-5xl mb-4">📝</div>
             <h2 className="text-lg font-bold text-[#263F5D] dark:text-white mb-2">
-              ขออภัย ไม่พบคำศัพท์นี้
+              ขออภัย สร้างสรุปไม่สำเร็จ
             </h2>
             <p className="text-[#263F5D]/60 dark:text-white/60 mb-6 text-sm">
-              ระบบยังไม่มีข้อมูลภาษามือสำหรับคำที่คุณพูด กรุณาลองพูดใหม่อีกครั้ง
-              หรือใช้คำที่มีความหมายใกล้เคียง
+              ระบบไม่สามารถสรุปข้อความได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง
             </p>
             <Button
-              onClick={() => setShowNotFoundModal(false)}
+              onClick={() => setShowSummarizeErrorModal(false)}
               className="bg-[#0F1F2F] hover:bg-[#1a2f44] text-[#C9A7E3]"
             >
-              พูดอีกครั้ง
+              ลองอีกครั้ง
             </Button>
           </div>
         </DialogContent>
