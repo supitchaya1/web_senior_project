@@ -63,12 +63,23 @@ export default function TranslatePage() {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [text, setText] = useState('');
   
-  // Word count calculation
+  // Word count calculation - for Thai, count characters since Thai doesn't use spaces between words
+  // We use a hybrid approach: count Thai characters + English words
   const getWordCount = (str: string) => {
     const trimmed = str.trim();
     if (!trimmed) return 0;
-    // Count Thai words by splitting on spaces and filtering empty strings
-    return trimmed.split(/\s+/).filter(word => word.length > 0).length;
+    
+    // Count Thai characters (excluding spaces/punctuation) as individual "words"
+    const thaiChars = (trimmed.match(/[\u0E00-\u0E7F]/g) || []).length;
+    
+    // Count English/other words (space-separated)
+    const nonThaiText = trimmed.replace(/[\u0E00-\u0E7F]/g, ' ').trim();
+    const englishWords = nonThaiText ? nonThaiText.split(/\s+/).filter(word => word.length > 0).length : 0;
+    
+    // For Thai text, approximate word count (average Thai word is ~4-5 characters)
+    const thaiWordEstimate = Math.ceil(thaiChars / 4);
+    
+    return thaiWordEstimate + englishWords;
   };
   
   const wordCount = getWordCount(text);
@@ -81,9 +92,8 @@ export default function TranslatePage() {
     if (newWordCount <= maxWords) {
       setText(newText);
     } else {
-      // If exceeding limit, truncate to max words
-      const words = newText.trim().split(/\s+/).slice(0, maxWords);
-      setText(words.join(' '));
+      // Allow typing but show warning - don't truncate abruptly
+      toast.warning('เกินขีดจำกัด 300 คำ');
     }
   };
   const [showUploadModal, setShowUploadModal] = useState(false);
