@@ -62,6 +62,30 @@ export default function TranslatePage() {
   const [isRecording, setIsRecording] = useState(false);
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [text, setText] = useState('');
+  
+  // Word count calculation
+  const getWordCount = (str: string) => {
+    const trimmed = str.trim();
+    if (!trimmed) return 0;
+    // Count Thai words by splitting on spaces and filtering empty strings
+    return trimmed.split(/\s+/).filter(word => word.length > 0).length;
+  };
+  
+  const wordCount = getWordCount(text);
+  const maxWords = 300;
+  
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newText = e.target.value;
+    const newWordCount = getWordCount(newText);
+    
+    if (newWordCount <= maxWords) {
+      setText(newText);
+    } else {
+      // If exceeding limit, truncate to max words
+      const words = newText.trim().split(/\s+/).slice(0, maxWords);
+      setText(words.join(' '));
+    }
+  };
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [showSummarizeErrorModal, setShowSummarizeErrorModal] = useState(false);
   const [isProcessingFile, setIsProcessingFile] = useState(false);
@@ -365,12 +389,17 @@ export default function TranslatePage() {
             transition={{ delay: 0.3 }}
             className="border-2 border-[#223C55] dark:border-[#213B54] rounded-xl p-5 bg-[#A6BFE3]"
           >
-            <h2 className="font-semibold text-[#263F5D] mb-3 text-sm">
-              ข้อความที่ได้ / พิมพ์ข้อความ
-            </h2>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-semibold text-[#263F5D] text-sm">
+                ข้อความที่ได้ / พิมพ์ข้อความ
+              </h2>
+              <span className={`text-xs font-medium ${wordCount >= maxWords ? 'text-red-500' : 'text-[#263F5D]/70'}`}>
+                {wordCount}/{maxWords}
+              </span>
+            </div>
             <Textarea
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={handleTextChange}
               placeholder="ข้อความจะแสดงที่นี่หลังบันทึกเสียง หรือคุณสามารถพิมพ์ข้อความที่ต้องการได้"
               className="min-h-[100px] resize-none bg-white/50 border-2 border-[#223C55] text-[#263F5D] placeholder:text-[#263F5D]/50 text-sm"
             />
