@@ -137,14 +137,6 @@ export default function ProfilePage() {
                 แก้ไขโปรไฟล์
               </Button>
             )}
-            <Button variant="outline" className="w-full justify-start border-[#223C55] dark:border-white/10 text-[#263F5D] dark:text-white text-sm">
-              <Settings size={16} className="mr-3" />
-              จัดการบัญชี
-            </Button>
-            <Button variant="outline" className="w-full justify-start border-[#223C55] dark:border-white/10 text-[#263F5D] dark:text-white text-sm">
-              <User size={16} className="mr-3" />
-              สลับบัญชี
-            </Button>
             <Button
               variant="outline"
               onClick={handleLogout}
